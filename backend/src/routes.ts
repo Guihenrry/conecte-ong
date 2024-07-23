@@ -8,7 +8,7 @@ import * as ongsController from './controllers/ongs'
 
 const routes = express.Router()
 
-routes.get('/', (req, res) => res.json({ ok: true }))
+routes.get('/', (req, res) => res.json({ ok: false }))
 
 routes.post('/signin', validate(authSchemas.signIn), authController.signIn)
 routes.post('/signup', validate(authSchemas.signUp), authController.signUp)
