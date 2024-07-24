@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://xyzcompany.supabase.co';
-const supabaseKey = 'your-anon-key';
+const supabaseUrl = 'https://ksceifrpcrkcxbhfoaiu.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzY2VpZnJwY3JrY3hiaGZvYWl1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE2OTE4MTUsImV4cCI6MjAzNzI2NzgxNX0.lzeg1luIzOUcOXLt1v83Db8BSDA620JsJ3VDiACBdL0';
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const getOngs = async (page: number, pageSize: number) => {
