@@ -76,7 +76,7 @@ export function Form() {
       )}
 
       <Button className="w-full mt-6" disabled={isPending}>
-        {isPending ? 'Carregando...' : 'Entrar'}
+        {isPending ? 'Carregando...' : 'Cadastrar'}
       </Button>
     </form>
   )

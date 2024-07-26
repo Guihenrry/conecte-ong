@@ -23,7 +23,7 @@ export default async function AuthLayout({
           </>
         )}
         <LinkButton href="/profile/volunteering">Meus Voluntariados</LinkButton>
-        <LinkButton href="/api/auth/sign-out" isDestructive>
+        <LinkButton href="/api/auth/sign-out" isDestructive prefetch={false}>
           Sair do aplicativo
         </LinkButton>
       </nav>
