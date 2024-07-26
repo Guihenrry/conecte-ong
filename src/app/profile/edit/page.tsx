@@ -2,7 +2,7 @@ import { getAuthenticatedUser } from '@/auth/auth'
 
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import { User, Mail, Lock } from 'lucide-react'
+import { User, Lock } from 'lucide-react'
 
 export default async function EditProfile() {
   const user = await getAuthenticatedUser()
@@ -17,7 +17,7 @@ export default async function EditProfile() {
           type="text"
           icon={User}
           className="mb-6"
-          defaultValue={user.name}
+          defaultValue={String(user?.name)}
         />
 
         <Input
