@@ -1,0 +1,17 @@
+export const ongsTypes = [
+  'Educação',
+  'Saúde',
+  'Meio Ambiente',
+  'Direitos Humanos',
+  'Proteção Animal',
+  'Cultura',
+  'Esporte',
+  'Inclusão Social',
+  'Habitação',
+  'Assistência Social',
+  'Apoio à Criança',
+  'Apoio aos Idosos',
+  'Resgate de Animais',
+  'Desenvolvimento Comunitário',
+  'Ajuda em Desastres',
+]
