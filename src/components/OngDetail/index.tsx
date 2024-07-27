@@ -28,7 +28,10 @@ export function OngDetail({
     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:flex-row py-8 border-b">
       <div className="w-full min-w-[180px]">
         <Link href={`/ongs/${id}`}>
-          <AspectRatio ratio="384 / 274">
+          <AspectRatio
+            ratio="384 / 274"
+            className="bg-gray-100 rounded-3xl border"
+          >
             <Image
               fill
               className="max-w-full w-full rounded-3xl"

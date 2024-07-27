@@ -93,7 +93,7 @@ export function Form() {
 
       <div className="mb-4">
         <label htmlFor="site" className="font-bold mb-2 inline-block">
-          SIte
+          Site
         </label>
 
         <Input id="site" name="site" />

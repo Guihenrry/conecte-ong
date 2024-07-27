@@ -10,7 +10,7 @@ type OngCardProps = {
 export function OngCard({ imgSrc, imgAlt, title }: OngCardProps) {
   return (
     <div className="flex flex-col gap-2">
-      <AspectRatio ratio="380 / 290">
+      <AspectRatio ratio="380 / 290" className="bg-gray-100 rounded-2xl border">
         <Image
           className="max-w-full w-full rounded-2xl"
           src={imgSrc || ''}

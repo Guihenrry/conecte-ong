@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 import { checkHasVolunteer } from '@/lib/supabase/queries/users_ongs'
 import { getOngById } from '@/lib/supabase/queries/ongs'
@@ -12,12 +13,13 @@ type DetailPageProps = {
   }
 }
 
-import { volunteer } from './actions'
 import { VolunteerForm } from './volunteer-form'
 import { AspectRatio } from '@/components/AspectRatio'
 
 export default async function DetailPage({ params: { id } }: DetailPageProps) {
   const { data } = await getOngById(id)
+  if (!data) return redirect('/')
+
   const user = await getAuthenticatedUser()
   const hasVolunteer = await checkHasVolunteer({
     ong_id: id,
@@ -33,7 +35,10 @@ export default async function DetailPage({ params: { id } }: DetailPageProps) {
         </div>
       </div>
       <div className="px-6 pt-6 pb-20 max-w-[848px] m-auto">
-        <AspectRatio ratio="800 / 540">
+        <AspectRatio
+          ratio="800 / 540"
+          className="bg-gray-100 rounded-3xl border"
+        >
           <Image
             fill
             src={data.cover || ''}

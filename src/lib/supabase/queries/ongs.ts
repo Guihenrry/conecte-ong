@@ -29,10 +29,12 @@ export async function getOngById(id: string) {
 
   return {
     error,
-    data: {
-      ...data,
-      cover: getImageUrl(data?.cover),
-    },
+    data: data
+      ? {
+          ...data,
+          cover: getImageUrl(data?.cover),
+        }
+      : null,
   }
 }
 
