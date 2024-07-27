@@ -1,4 +1,6 @@
+import { cookies } from 'next/headers'
 import { supabase } from '../client'
+import { signInWithPassword } from '../auth'
 
 type CreateUserParams = {
   id: string
@@ -32,4 +34,50 @@ export async function getUser({ accessToken }: GetUserParams) {
     .single()
 
   return { data: response.data, error: response.error }
+}
+
+type UpdateUserNameParams = {
+  name: string
+}
+
+export async function updateUserName({ name }: UpdateUserNameParams) {
+  const accessToken = String(cookies().get('token')?.value)
+  const { data, error } = await supabase.auth.getUser(accessToken)
+
+  if (error) {
+    return { error }
+  }
+
+  return await supabase
+    .from('users')
+    .update({ name: name })
+    .eq('id', data.user.id)
+}
+
+type ChangePasswordWithCurrentPasswordParams = {
+  current_password: string
+  password: string
+}
+
+export async function changePasswordWithCurrentPassword({
+  current_password,
+  password,
+}: ChangePasswordWithCurrentPasswordParams) {
+  const accessToken = String(cookies().get('token')?.value)
+  const { data, error } = await supabase.auth.getUser(accessToken)
+
+  if (error) {
+    return { error }
+  }
+
+  const response = await signInWithPassword({
+    email: data.user.email || '',
+    password: current_password,
+  })
+
+  if (response.error) {
+    return { error: response.error }
+  }
+
+  return supabase.auth.updateUser({ password })
 }

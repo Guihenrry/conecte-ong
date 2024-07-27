@@ -12,8 +12,6 @@ export default async function Volunteering() {
 
   const ongs = await getOngsByUserId(user?.id)
 
-  console.log(ongs)
-
   return (
     <div className="pb-16">
       <h2 className="font-bold text-3xl mb-4">Meus Voluntariados</h2>

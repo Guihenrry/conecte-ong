@@ -9,8 +9,6 @@ type FormType = {
 
 export async function deleteOng(data: FormData) {
   const result = Object.fromEntries(data) as FormType
-  console.log(result)
-
   await deleteOngById(result.id)
   revalidatePath('/profile/ongs')
 }

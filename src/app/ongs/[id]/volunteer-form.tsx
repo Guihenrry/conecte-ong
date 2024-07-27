@@ -5,6 +5,7 @@ import { useFormState } from '@/hooks/useFormState'
 
 import { volunteer } from './actions'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 type VolunteerFormProps = {
   user_id: string
@@ -21,6 +22,8 @@ export function VolunteerForm({
     hasVolunteer ? 'Desvoluntariar' : 'Seja voluntário'
   )
   const [state, handleSubmit, isPending] = useFormState(volunteer, () => {
+    toast.success('A ONG entrará em contato para mais detalhes.')
+
     setButtonText((prevState) =>
       prevState === 'Desvoluntariar' ? 'Seja voluntário' : 'Desvoluntariar'
     )

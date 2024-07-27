@@ -15,7 +15,6 @@ export async function uploadFile(file: File) {
     .upload(fileName, file)
 
   if (error) {
-    console.log('error uploading file')
     console.error(error)
   }
 
