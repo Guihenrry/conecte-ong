@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+<h1 align="center">
+  <img alt="ConecteOng" src=".github/logo.png" width="250px" />
+</h1>
 
-## Getting Started
+<h3 align="center">
+  Plataforma que conecta voluntários a ONGs
+</h3>
 
-First, run the development server:
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Guihenrry/conecte-ong?color=623CEA">
+
+  <img alt="Tech Challenge - FIAP" src="https://img.shields.io/badge/Tech%20Challenge-FIAP-623CEA">
+
+  <img alt="ConecteOng" src="https://img.shields.io/badge/ConecteOng-623CEA">
+</p>
+
+<p align="center">
+  <img alt="Screenshot" src=".github/screenshot.png" width="700px" />
+</p>
+
+> [Visualizar live demo](https://conecte-ong.vercel.app/)
+
+## Descrição
+
+O projeto **Fiap ConecteOng** visa criar uma plataforma que conecta voluntários a ONGs, facilitando o engajamento e a organização de atividades voluntárias. A plataforma também permite o cadastro de novas ONGs, promovendo uma rede de colaboração e apoio.
+
+## Tecnologias Utilizadas
+
+- NextJS
+- ReactJS
+- TailwindCSS
+- TypeScript
+- SupaBase
+
+## Funcionalidades
+
+### Cadastro de Usuário
+
+- Registro de novos membros com informações como Nome Completo, E-mail e Senha. Esta funcionalidade é essencial para manter um registro organizado e detalhado de todos os usuários.
+
+### Listagem de ONGs
+
+- Apresenta uma tabela com informações das ONGs registradas, incluindo Nome, Descrição, Localização, Área de Atuação e Contato. Isso facilita a busca e o engajamento dos voluntários.
+
+### Cadastro de ONGs
+
+- Permite o registro de novas ONGs na plataforma, incluindo dados essenciais como Nome, Descrição, Localização, Área de Atuação e Contato.
+
+## Como utilizar
+
+1 - Primeiro passo é clonar esse repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Guihenrry/conecte-ong.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2 - Acessar o diretório do projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd conecte-ong
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+3 - Instalar o pnpm (OBS: precisa no NodeJS instalado na sua maquina)
 
-## Learn More
+```bash
+npm install -g pnpm
+```
 
-To learn more about Next.js, take a look at the following resources:
+4 - Instalar as dependências
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5 - Copiar o arquivo '.env.example' para '.env.local' (OBS: precisa adicionar as credenciais do supabase)
 
-## Deploy on Vercel
+```bash
+cp .env.example .env
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6 - Por fim, execute o projeto em modo desenvolvimento
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
