@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { AspectRatio } from '../AspectRatio'
+
 type OngDetailProps = {
   id?: number
   imgSrc: string
@@ -23,17 +25,18 @@ export function OngDetail({
   children,
 }: OngDetailProps) {
   return (
-    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 lg:flex-row py-8 border-b">
+    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:flex-row py-8 border-b">
       <div className="w-full min-w-[180px]">
         <Link href={`/ongs/${id}`}>
-          <Image
-            className="max-w-full w-full rounded-3xl"
-            src={imgSrc}
-            alt={imgAlt}
-            width={384}
-            height={274}
-            objectFit="cover"
-          />
+          <AspectRatio ratio="384 / 274">
+            <Image
+              fill
+              className="max-w-full w-full rounded-3xl"
+              src={imgSrc}
+              alt={imgAlt}
+              objectFit="cover"
+            />
+          </AspectRatio>
         </Link>
       </div>
 

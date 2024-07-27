@@ -14,6 +14,7 @@ type DetailPageProps = {
 
 import { volunteer } from './actions'
 import { VolunteerForm } from './volunteer-form'
+import { AspectRatio } from '@/components/AspectRatio'
 
 export default async function DetailPage({ params: { id } }: DetailPageProps) {
   const { data } = await getOngById(id)
@@ -32,13 +33,15 @@ export default async function DetailPage({ params: { id } }: DetailPageProps) {
         </div>
       </div>
       <div className="px-6 pt-6 pb-20 max-w-[848px] m-auto">
-        <Image
-          src={data.cover || ''}
-          alt={data.title || ''}
-          width={800}
-          height={540}
-          className="max-w-full rounded-3xl"
-        />
+        <AspectRatio ratio="800 / 540">
+          <Image
+            fill
+            src={data.cover || ''}
+            alt={data.title || ''}
+            className="max-w-full rounded-3xl"
+            objectFit="cover"
+          />
+        </AspectRatio>
 
         <div className="flex flex-col md:flex-row gap-8 md:gap-20 mt-12">
           <div className="order-2 md:order-1">
