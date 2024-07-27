@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers'
 import { supabase } from '../client'
 import { signInWithPassword } from '../auth'
 
@@ -38,10 +37,13 @@ export async function getUser({ accessToken }: GetUserParams) {
 
 type UpdateUserNameParams = {
   name: string
+  accessToken: string
 }
 
-export async function updateUserName({ name }: UpdateUserNameParams) {
-  const accessToken = String(cookies().get('token')?.value)
+export async function updateUserName({
+  name,
+  accessToken,
+}: UpdateUserNameParams) {
   const { data, error } = await supabase.auth.getUser(accessToken)
 
   if (error) {
@@ -55,15 +57,16 @@ export async function updateUserName({ name }: UpdateUserNameParams) {
 }
 
 type ChangePasswordWithCurrentPasswordParams = {
+  accessToken: string
   current_password: string
   password: string
 }
 
 export async function changePasswordWithCurrentPassword({
+  accessToken,
   current_password,
   password,
 }: ChangePasswordWithCurrentPasswordParams) {
-  const accessToken = String(cookies().get('token')?.value)
   const { data, error } = await supabase.auth.getUser(accessToken)
 
   if (error) {

@@ -4,6 +4,7 @@ import {
   changePasswordWithCurrentPassword,
   updateUserName,
 } from '@/lib/supabase/queries/users'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
@@ -48,6 +49,7 @@ const schema = z
 
 export async function editProfile(formData: FormData) {
   const result = schema.safeParse(Object.fromEntries(formData))
+  const accessToken = String(cookies().get('token')?.value)
 
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors
@@ -55,7 +57,10 @@ export async function editProfile(formData: FormData) {
     return { success: false, message: null, errors }
   }
 
-  const { error } = await updateUserName({ name: result.data.name })
+  const { error } = await updateUserName({
+    name: result.data.name,
+    accessToken,
+  })
 
   if (error) {
     return { success: false, message: error.message, errors: null }
@@ -65,6 +70,7 @@ export async function editProfile(formData: FormData) {
     const responseChangePassword = await changePasswordWithCurrentPassword({
       current_password: result.data.current_password,
       password: result.data.password,
+      accessToken,
     })
 
     if (responseChangePassword.error) {
