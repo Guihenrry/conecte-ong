@@ -52,6 +52,13 @@ export default async function DetailPage({ params: { id } }: DetailPageProps) {
               </div>
             )}
 
+            {data.city && (
+              <div className="mb-4 pb-4 border-b">
+                <h4 className="font-bold mb-2">Cidade</h4>
+                <p className="text-gray-500">{data.city}</p>
+              </div>
+            )}
+
             {data.phone && (
               <div className="mb-4 pb-4 border-b">
                 <h4 className="font-bold mb-2">Telefone</h4>
