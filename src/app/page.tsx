@@ -1,40 +1,28 @@
-import { Button } from '@/components/Button'
-import { FilterInput } from '@/components/FilterInput'
-import { FilterSelect } from '@/components/FilterSelect'
-import { Input } from '@/components/Input'
-import { NoResult } from '@/components/NoResult'
-import { OngCard } from '@/components/OngCard'
-import { cities } from '@/data/cities'
-import { ongsTypes } from '@/data/ongsTypes'
-import { listOngs } from '@/lib/supabase/queries/ongs'
 import Link from 'next/link'
 
-export default async function Home() {
-  const { data } = await listOngs()
+import { Filters } from '@/components/Filters'
+import { NoResult } from '@/components/NoResult'
+import { OngCard } from '@/components/OngCard'
+import { listOngs } from '@/lib/supabase/queries/ongs'
+
+type HomeProps = {
+  searchParams?: {
+    city?: string
+    occupation?: string
+    name?: string
+  }
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const { data } = await listOngs({
+    city: searchParams?.city,
+    occupation: searchParams?.occupation,
+    title: searchParams?.name,
+  })
 
   return (
     <main className="px-6 py-20 max-w-[1300px] m-auto">
-      <div className="mb-12 gap-2 flex flex-col sm:flex-row sm:items-center sm:justify-center">
-        <FilterSelect label="Cidade">
-          <option value="">Selecione</option>
-          {cities.map((city) => (
-            <option value={city} key={city}>
-              {city}
-            </option>
-          ))}
-        </FilterSelect>
-
-        <FilterInput label="Nome" placeholder="Nome da ong" />
-        <FilterSelect label="Área de Atuação">
-          <option value="">Selecione</option>
-          {ongsTypes.map((type) => (
-            <option value={type} key={type}>
-              {type}
-            </option>
-          ))}
-        </FilterSelect>
-        <Button className="w-full sm:w-[100px] h-14">Filtrar</Button>
-      </div>
+      <Filters />
 
       {!data?.length && <NoResult />}
 

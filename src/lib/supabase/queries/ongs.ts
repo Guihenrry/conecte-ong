@@ -8,8 +8,28 @@ export async function createOng(params: CreateOngParams) {
   return await supabase.from('ongs').insert(params).select()
 }
 
-export async function listOngs() {
-  const response = await supabase.from('ongs').select('*')
+type ListOngsFilters = {
+  city?: string
+  occupation?: string
+  title?: string
+}
+
+export async function listOngs(filters?: ListOngsFilters) {
+  let query = supabase.from('ongs').select('*')
+
+  if (filters?.city) {
+    query = query.eq('city', filters.city)
+  }
+
+  if (filters?.occupation) {
+    query = query.eq('occupation', filters.occupation)
+  }
+
+  if (filters?.title) {
+    query = query.like('title', `%${filters.title}%`)
+  }
+
+  const response = await query
 
   return {
     error: response.error,
